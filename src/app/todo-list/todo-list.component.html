@@ -1,0 +1,21 @@
+<ul id="myUL">
+
+<li
+  class="text-item"
+  *ngFor="let text of texts; let i = index; let first = first"
+  [class.checked]="text.active"
+  (click)="onSelectItem(text)">
+
+    <span
+      *ngIf="!first"
+      class="changeTextsPosition"
+      (click)="onChangePosition($event, i)">
+      <i class="fa fa-arrow-up"></i>
+    </span>
+
+  <span class="close" (click)="onDeleteItem(i)">X</span>
+
+  {{ text.name }}
+</li>
+
+</ul>

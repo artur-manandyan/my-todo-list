@@ -1,0 +1,21 @@
+<div id="myDIV" class="header">
+  <h2>My To Do List</h2>
+
+  <input
+    type="text"
+    id="myInput"
+    placeholder="Title..."
+    #inputElementRef>
+
+  <span
+    class="addBtn"
+    (click)="onAddingText()"
+  >Add</span>
+
+  <span
+    class="upArrowBtn"
+    (click)="onReversText()">
+    <i class="fa fa-arrow-{{textsSortState ? 'up' : 'down'}}"></i>
+  </span>
+
+</div>
