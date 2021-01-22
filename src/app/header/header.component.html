@@ -5,17 +5,20 @@
     type="text"
     id="myInput"
     placeholder="Title..."
-    #inputElementRef>
+    #inputElementRef
+    (keydown.enter)="onAddingText()">
 
   <span
     class="addBtn"
     (click)="onAddingText()"
   >Add</span>
 
+
   <span
     class="upArrowBtn"
     (click)="onReversText()">
     <i class="fa fa-arrow-{{textsSortState ? 'up' : 'down'}}"></i>
   </span>
+
 
 </div>

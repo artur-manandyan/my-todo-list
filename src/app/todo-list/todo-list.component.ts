@@ -22,12 +22,19 @@ export class TodoListComponent implements OnInit {
   }
 
   public onSelectItem(text: Text): void {
-    text.active = !text.active;
+    if (!text.editState) {
+      text.active = !text.active;
+    }
   }
 
   public onChangePosition(event: MouseEvent, index: number): void {
     event.stopPropagation();
     arrayMove(this.texts, index, index - 1);
+  }
+
+  public onChangeName(event: MouseEvent, text: Text): void {
+    event.stopPropagation();
+    text.editState = !text.editState;
   }
 
 

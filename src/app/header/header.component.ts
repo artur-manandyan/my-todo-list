@@ -9,9 +9,9 @@ import {Text} from '../common/interfaces/text';
 export class HeaderComponent implements OnInit {
 
   @Input() public textsSortState = false;
-  @Input() public texts: Text[] = [];
-  @ViewChild('inputElementRef') inputElementRef: ElementRef;
-  @Output() addingText = new EventEmitter<Text>();
+  @ViewChild('inputElementRef') inputElementRef!: ElementRef;
+  @Output() submit$ = new EventEmitter<Text>();
+  @Output() revers$ = new EventEmitter<void>();
 
   constructor() {
   }
@@ -19,25 +19,19 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onAddingText(): void {
-    const inputValue = this.inputElementRef.nativeElement.value;
-    this.addingText.emit(inputValue);
+  public onAddingText(): void {
+    if (this.inputElementRef.nativeElement.value !== '') {
+      this.submit$.emit({name: this.inputElementRef.nativeElement.value});
+      this.inputElementRef.nativeElement.value = '';
+      return;
+    }
+    alert('write something');
   }
 
   public onReversText(): void {
     this.textsSortState = !this.textsSortState;
-    this.texts.reverse();
+    this.revers$.emit();
   }
-
-
-  public onAddedText(el: HTMLInputElement): void {
-    if (el.value !== '') {
-      this.texts.push({name: el.value});
-      el.value = '';
-      return;
-    }
-    alert('Write Something');
-  }
-
 
 }
+

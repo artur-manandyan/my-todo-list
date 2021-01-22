@@ -1,10 +1,17 @@
 <ul id="myUL">
 
-<li
-  class="text-item"
-  *ngFor="let text of texts; let i = index; let first = first"
-  [class.checked]="text.active"
-  (click)="onSelectItem(text)">
+  <li
+    class="text-item"
+    *ngFor="let text of texts; let i = index; let first = first"
+    [class.checked]="text.active"
+    (click)="onSelectItem(text)">
+
+    <span
+      class="changeTextName"
+      (click)="onChangeName($event, text)">
+     <i class="fa fa-{{text.editState ? 'save': 'edit' }}"
+     ></i>
+    </span>
 
     <span
       *ngIf="!first"
@@ -13,9 +20,20 @@
       <i class="fa fa-arrow-up"></i>
     </span>
 
-  <span class="close" (click)="onDeleteItem(i)">X</span>
+    <span class="close" (click)="onDeleteItem(i)">X</span>
 
-  {{ text.name }}
-</li>
+
+    <ng-container *ngIf="!text.editState">
+      {{ text.name }}
+    </ng-container>
+
+
+    <input
+      type="text"
+      class="changeTextNameInput"
+      *ngIf="text.editState"
+      [(ngModel)]="text.name">
+
+  </li>
 
 </ul>

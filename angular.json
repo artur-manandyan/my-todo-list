@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "my-todo-list"
+  "defaultProject": "my-todo-list",
+  "cli": {
+    "analytics": false
+  }
 }

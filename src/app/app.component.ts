@@ -1,8 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {arrayMove} from './common/helpers/array-move';
-import { Text } from './common/interfaces/text';
-
-
+import {Component, OnInit} from '@angular/core';
+import {Text} from './common/interfaces/text';
 
 @Component({
   selector: 'app-root',
@@ -13,21 +10,16 @@ import { Text } from './common/interfaces/text';
 export class AppComponent implements OnInit {
 
   public texts: Text[] = [];
-   public textsSortState = false;
 
   ngOnInit(): void {
   }
 
-
-  public onAddedText(el: HTMLInputElement): void {
-    if (el.value !== '') {
-      this.texts.push({name: el.value});
-      el.value = '';
-      return;
-    }
-    alert('Write Something');
+  public onAddedText(text: Text): void {
+    this.texts.push(text);
   }
 
+  public reversText(): void {
+    this.texts.reverse();
+  }
 
 }
-

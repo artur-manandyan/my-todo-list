@@ -1,5 +1,6 @@
 <app-header
- (addingText)="onAddedText()" ></app-header>
+ (submit$)="onAddedText($event)"
+ (revers$)="reversText()"></app-header>
 
 <app-todo-list
   [texts]="texts"
